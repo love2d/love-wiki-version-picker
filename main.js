@@ -236,6 +236,7 @@ function versionpicker() {
 
 	function injectVersionTags () {
 		var versions = [
+			{"version": "11.5", "codename": "Mysterious Mysteries"},
 			{"version": "11.4", "codename": "Mysterious Mysteries"},
 			{"version": "11.3", "codename": "Mysterious Mysteries"},
 			{"version": "11.2", "codename": "Mysterious Mysteries"},
