@@ -1,4 +1,4 @@
-// Source on github: https://github.com/airstruck/love-wiki-version-picker
+// Source on github: https://github.com/love2d/love-wiki-version-picker
 function versionpicker() {
 	var picker = document.createElement('select');
 
