@@ -53,7 +53,7 @@ function versionpicker() {
 	}
 
 	function wrapSections () {
-		var element = document.querySelector('h2');
+		var element = document.querySelector('.mw-parser-output > h2');
 		var wrapper;
 
 		while (element) {
