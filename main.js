@@ -78,6 +78,10 @@ function versionpicker() {
 			section.setAttribute('data-love-version-removed', a.title);
 			note.setAttribute('data-love-version-note', true);
 		}
+		if (note.textContent.match(/deprecated in/i)) {
+			var a = note.querySelector('a');
+			section.setAttribute('data-love-version-deprecated', a.title);
+		}
 	}
 
 	function QueryIterator (query) {
@@ -90,6 +94,7 @@ function versionpicker() {
 	var withAdded = QueryIterator('*[data-love-version-added]');
 	var withRemoved = QueryIterator('*[data-love-version-removed]');
 	var withAddedRemoved = QueryIterator('*[data-love-version-added][data-love-version-removed]');
+	var withDeprecated = QueryIterator('*[data-love-version-deprecated]');
 	var withNotes = QueryIterator('*[data-love-version-note]');
 
 	function hideNotes () {
@@ -120,6 +125,7 @@ function versionpicker() {
 	function scanTables () {
 		var added = document.querySelectorAll('.smwtable *[alt="Added since"] + *');
 		var removed = document.querySelectorAll('.smwtable *[alt="Removed in"] + *');
+		var deprecated = document.querySelectorAll('.smwtable *[alt="Deprecated in"] + *');
 
 		array(added).forEach(function (a) {
 			var e = a.parentNode.parentNode;
@@ -131,6 +137,12 @@ function versionpicker() {
 			var e = a.parentNode.parentNode;
 			e.setAttribute('data-love-filterable', true);
 			e.setAttribute('data-love-version-removed', a.title);
+			needsFilter = true;
+		});
+		array(deprecated).forEach(function (a) {
+			var e = a.parentNode.parentNode;
+			e.setAttribute('data-love-filterable', true);
+			e.setAttribute('data-love-version-deprecated', a.title);
 			needsFilter = true;
 		});
 	}
