@@ -270,21 +270,6 @@ function versionpicker() {
 		}
 	}
 
-	function queryVersionTags () {
-		var url = '/w/index.php?title=Version_History&action=raw';
-		var xhr = new XMLHttpRequest();
-		xhr.onload = function () {
-			var re = /\[\[([\d.]+)\]\][^\n]*\n[^\|]*\|(.*)\n/gm;
-			var m;
-
-			while (m = re.exec(this.responseText)) {
-				injectVersionTag(m[1], m[2]);
-			}
-		}
-		xhr.open('get', url, true);
-		xhr.send();
-	}
-
 	function setPicker (target) {
 		for (var i = 0; i < picker.options.length; ++i) {
 			if (picker.options[i].value === target) {
