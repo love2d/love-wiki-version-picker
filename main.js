@@ -68,19 +68,28 @@ function versionpicker() {
 	}
 
 	function updateSectionFromNote (section, note) {
-		if (note.textContent.match(/available since/i)) {
-			var a = note.querySelector('a');
-			section.setAttribute('data-love-version-added', a.title);
+		if (note.getAttribute('data-newin') !== null) {
+			var version = note.getAttribute('data-newin');
+			if (version.startsWith('[[')) {
+				version = version.substring(2, version.length-2);
+			}
+			section.setAttribute('data-love-version-added', version);
 			note.setAttribute('data-love-version-note', true);
 		}
-		if (note.textContent.match(/removed in/i)) {
-			var a = note.querySelector('a');
-			section.setAttribute('data-love-version-removed', a.title);
+		if (note.getAttribute('data-oldin') !== null) {
+			var version = note.getAttribute('data-oldin');
+			if (version.startsWith('[[')) {
+				version = version.substring(2, version.length-2);
+			}
+			section.setAttribute('data-love-version-removed', version);
 			note.setAttribute('data-love-version-note', true);
 		}
-		if (note.textContent.match(/deprecated in/i)) {
-			var a = note.querySelector('a');
-			section.setAttribute('data-love-version-deprecated', a.title);
+		if (note.getAttribute('data-deprecatedin') !== null) {
+			var version = note.getAttribute('data-deprecatedin');
+			if (version.startsWith('[[')) {
+				version = version.substring(2, version.length-2);
+			}
+			section.setAttribute('data-love-version-deprecated', version);
 		}
 	}
 
